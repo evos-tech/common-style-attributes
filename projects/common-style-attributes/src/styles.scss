@@ -30,3 +30,5 @@ $common-style-attributes-theme: mat-light-theme($common-style-attributes-primary
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import 'styles/csa';

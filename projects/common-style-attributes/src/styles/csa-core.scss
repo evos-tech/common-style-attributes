@@ -1,0 +1,12 @@
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+$device-breakpoints: (
+  desktop: 840px,
+  tablet: 600px,
+  phone: 0px
+);

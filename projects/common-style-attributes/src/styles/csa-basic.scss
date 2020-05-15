@@ -1,0 +1,19 @@
+[cover-image] {
+  background-size: cover;
+  background-position: center;
+}
+
+[debug] {
+  > * {
+    border: 1px dashed #ef6c00;
+    box-sizing: border-box;
+  }
+}
+
+[divider] {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+[hidden] {
+  display: none;
+}

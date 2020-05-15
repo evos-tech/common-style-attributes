@@ -1,0 +1,70 @@
+$csa-margin: 16px !default;
+$csa-padding: 16px !default;
+
+[margin] {
+  margin: $csa-margin;
+}
+
+[margin-horizontal] {
+  margin-left: $csa-margin;
+  margin-right: $csa-margin;
+}
+
+[margin-vertical] {
+  margin-top: $csa-margin;
+  margin-bottom: $csa-margin;
+}
+
+[margin-top] {
+  margin-top: $csa-margin;
+}
+
+[margin-bottom] {
+  margin-bottom: $csa-margin;
+}
+
+[margin-left] {
+  margin-left: $csa-margin;
+}
+
+[margin-right] {
+  margin-right: $csa-margin;
+}
+
+[padding] {
+  padding: $csa-padding;
+}
+
+[padding-horizontal] {
+  padding-left: $csa-padding;
+  padding-right: $csa-padding;
+}
+
+[padding-vertical] {
+  padding-top: $csa-padding;
+  padding-bottom: $csa-padding;
+}
+
+[padding-top] {
+  padding-top: $csa-padding;
+}
+
+[padding-bottom] {
+  padding-bottom: $csa-padding;
+}
+
+[padding-left] {
+  padding-left: $csa-padding;
+}
+
+[padding-right] {
+  padding-right: $csa-padding;
+}
+
+[no-margin] {
+  margin: 0;
+}
+
+[no-padding] {
+  padding: 0;
+}

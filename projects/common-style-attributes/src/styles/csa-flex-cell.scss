@@ -1,0 +1,166 @@
+@import "csa-core";
+
+$csa-gutter: 4px !default;
+
+$gridConfig: (
+  phone: (
+    cells: (
+      cell-1: 25%,
+      cell-2: 50%,
+      cell-3: 75%,
+      cell-4: 100%,
+      cell-5: 100%,
+      cell-6: 100%,
+      cell-7: 100%,
+      cell-8: 100%,
+      cell-9: 100%,
+      cell-10: 100%,
+      cell-11: 100%,
+      cell-12: 100%
+    )
+  ),
+  tablet: (
+    cells: (
+      cell-1: 12.5%,
+      cell-2: 25%,
+      cell-3: 37.5%,
+      cell-4: 50%,
+      cell-5: 62.5%,
+      cell-6: 75%,
+      cell-7: 87.5%,
+      cell-8: 100%,
+      cell-9: 100%,
+      cell-10: 100%,
+      cell-11: 100%,
+      cell-12: 100%
+    )
+  ),
+  desktop: (
+    cells: (
+      cell-1: 8.33333%,
+      cell-2: 16.66667%,
+      cell-3: 25%,
+      cell-4: 33.33333%,
+      cell-5: 41.66667%,
+      cell-6: 50%,
+      cell-7: 58.33333%,
+      cell-8: 66.66667%,
+      cell-9: 75%,
+      cell-10: 83.33333%,
+      cell-11: 91.66667%,
+      cell-12: 100%
+    )
+  )
+);
+
+@mixin flex-cell-rules($device, $gutterSize: $csa-gutter) {
+  [flex-cell] {
+    display: flex;
+    flex-wrap: wrap;
+
+    &[gutter] {
+      margin: calc(#{$gutterSize * -1});
+
+      > * {
+        margin: calc(#{$gutterSize});
+      }
+    }
+  }
+
+  // --- default cell 4 (if not specified)
+  [flex-cell][gutter] > *:not([grow]):not([shrink]) {
+    flex-basis: calc(#{map-deep-get($gridConfig, $device, 'cells', 'cell-4')} - #{$gutterSize * 2});
+  }
+  [flex-cell]:not([gutter]) > *:not([grow]):not([shrink]) {
+    flex-basis: map-deep-get($gridConfig, $device, 'cells', 'cell-4');
+  }
+
+  // --- default cell 6
+  [flex-cell][default-cell-6][gutter] > *:not([grow]):not([shrink]) {
+    flex-basis: calc(#{map-deep-get($gridConfig, $device, 'cells', 'cell-6')} - #{$gutterSize * 2});
+  }
+  [flex-cell][default-cell-6]:not([gutter]) > *:not([grow]):not([shrink]) {
+    flex-basis: map-deep-get($gridConfig, $device, 'cells', 'cell-6');
+  }
+
+  // --- default cell 12
+  [flex-cell][default-cell-12][gutter] > *:not([grow]):not([shrink]) {
+    flex-basis: calc(#{map-deep-get($gridConfig, $device, 'cells', 'cell-12')} - #{$gutterSize * 2});
+  }
+  [flex-cell][default-cell-12]:not([gutter]) > *:not([grow]):not([shrink]) {
+    flex-basis: map-deep-get($gridConfig, $device, 'cells', 'cell-12');
+  }
+
+  @each $key, $value in map-deep-get($gridConfig, $device, 'cells') {
+    // specificity specificity specificity specificity specificity
+    [flex-cell]:not([gutter]) > [#{$key}][#{$key}][#{$key}][#{$key}][#{$key}] {
+      flex-basis: $value;
+    }
+    // specificity specificity specificity specificity specificity
+    [flex-cell][gutter] > [#{$key}][#{$key}][#{$key}][#{$key}][#{$key}] {
+      flex-basis: calc(#{$value} - #{$gutterSize * 2});
+    }
+  }
+}
+
+// phone (4 columns per row)
+@media (max-width: map-get($device-breakpoints, 'tablet')-1) {
+  @include flex-cell-rules('phone');
+}
+
+// tablet (8 columns per row)
+@media (min-width: map-get($device-breakpoints, 'tablet')) and (max-width: map-get($device-breakpoints, 'desktop')-1) {
+  @include flex-cell-rules('tablet');
+}
+
+// desktop (12 columns per row)
+@media (min-width: map-get($device-breakpoints, 'desktop')) {
+  @include flex-cell-rules('desktop');
+}
+
+[grow] {
+  flex-grow: 1;
+}
+
+[shrink] {
+  flex-shrink: 1;
+}
+
+[grow-items] {
+  > * {
+    flex-grow: 1;
+  }
+}
+
+[flex-cell-reverse] {
+  flex-direction: row-reverse;
+}
+
+[left] {
+  display: flex;
+  justify-content: flex-start;
+}
+
+[right] {
+  display: flex;
+  justify-content: flex-end;
+}
+
+[top] {
+  display: flex;
+  align-items: flex-start;
+}
+
+[bottom] {
+  display: flex;
+  align-items: flex-end;
+}
+
+[vcenter] {
+  display: flex;
+  align-items: center;
+}
+[center] {
+  display: flex;
+  justify-content: center;
+}
