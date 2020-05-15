@@ -2,5 +2,139 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "common-style-attributes": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "inlineTemplate": true,
+          "inlineStyle": true,
+          "style": "scss",
+          "skipTests": true
+        },
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@schematics/angular:module": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
+      "root": "projects/common-style-attributes",
+      "sourceRoot": "projects/common-style-attributes/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/common-style-attributes",
+            "index": "projects/common-style-attributes/src/index.html",
+            "main": "projects/common-style-attributes/src/main.ts",
+            "polyfills": "projects/common-style-attributes/src/polyfills.ts",
+            "tsConfig": "projects/common-style-attributes/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/common-style-attributes/src/favicon.ico",
+              "projects/common-style-attributes/src/assets"
+            ],
+            "styles": [
+              "projects/common-style-attributes/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/common-style-attributes/src/environments/environment.ts",
+                  "with": "projects/common-style-attributes/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "common-style-attributes:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "common-style-attributes:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "common-style-attributes:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "main": "projects/common-style-attributes/src/test.ts",
+            "polyfills": "projects/common-style-attributes/src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "styles": [
+              "projects/common-style-attributes/src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/common-style-attributes/src/favicon.ico",
+              "projects/common-style-attributes/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/common-style-attributes/tsconfig.app.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "cli": {
+    "analytics": false
+  },
+  "defaultProject": "common-style-attributes"
 }
