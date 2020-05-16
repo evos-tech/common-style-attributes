@@ -1,4 +1,7 @@
 {
   "name": "@evos-tech/common-style-attributes",
-  "version": "0.2.0"
+  "version": "0.2.0",
+  "publishConfig": {
+    "access": "public"
+  }
 }
